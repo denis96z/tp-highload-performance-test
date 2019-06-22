@@ -1,10 +1,14 @@
 package storages
 
+import (
+	"tp-highload-performance-test/pkg/models"
+)
+
 type Repository interface {
 	OpenConnection() error
 	CloseConnection() error
 
-	SaveBlock(block *Block) error
-	LoadBlock(block *Block) error
-	DeleteBlock(block *Block) error
+	SaveBlock(block *models.Block) error
+	LoadBlock(block *models.Block) error
+	DeleteBlock(block *models.Block) error
 }

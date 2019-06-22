@@ -1,13 +1,18 @@
 package models
 
-type ID int64
-type UUID string
-
-const (
-	BlockSize = 4
+import (
+	"github.com/google/uuid"
 )
 
-type BlockData [BlockSize]byte
+type ID int64
+type UUID uuid.UUID
+
+const (
+	IDLen   = 4
+	UUIDLen = 16
+)
+
+type BlockData []byte
 
 type Block struct {
 	DocumentID UUID
