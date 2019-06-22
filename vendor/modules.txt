@@ -1,0 +1,46 @@
+# github.com/bradfitz/gomemcache v0.0.0-20190329173943-551aad21a668
+github.com/bradfitz/gomemcache/memcache
+# github.com/go-redis/redis v6.15.2+incompatible
+github.com/go-redis/redis
+github.com/go-redis/redis/internal
+github.com/go-redis/redis/internal/consistenthash
+github.com/go-redis/redis/internal/hashtag
+github.com/go-redis/redis/internal/pool
+github.com/go-redis/redis/internal/proto
+github.com/go-redis/redis/internal/util
+# github.com/golang/protobuf v1.3.1
+github.com/golang/protobuf/proto
+# github.com/golang/snappy v0.0.0-20180518054509-2e65f85255db
+github.com/golang/snappy
+# github.com/syndtr/goleveldb v1.0.0
+github.com/syndtr/goleveldb/leveldb
+github.com/syndtr/goleveldb/leveldb/cache
+github.com/syndtr/goleveldb/leveldb/comparer
+github.com/syndtr/goleveldb/leveldb/errors
+github.com/syndtr/goleveldb/leveldb/filter
+github.com/syndtr/goleveldb/leveldb/iterator
+github.com/syndtr/goleveldb/leveldb/journal
+github.com/syndtr/goleveldb/leveldb/memdb
+github.com/syndtr/goleveldb/leveldb/opt
+github.com/syndtr/goleveldb/leveldb/storage
+github.com/syndtr/goleveldb/leveldb/table
+github.com/syndtr/goleveldb/leveldb/util
+# github.com/tarantool/go-tarantool v0.0.0-20190604102446-30b00068fca4
+github.com/tarantool/go-tarantool
+# golang.org/x/net v0.0.0-20190620200207-3b0461eec859
+golang.org/x/net/context
+# google.golang.org/appengine v1.6.1
+google.golang.org/appengine/datastore
+google.golang.org/appengine
+google.golang.org/appengine/datastore/internal/cloudkey
+google.golang.org/appengine/internal
+google.golang.org/appengine/internal/datastore
+google.golang.org/appengine/internal/app_identity
+google.golang.org/appengine/internal/modules
+google.golang.org/appengine/datastore/internal/cloudpb
+google.golang.org/appengine/internal/base
+google.golang.org/appengine/internal/log
+google.golang.org/appengine/internal/remote_api
+# gopkg.in/vmihailenco/msgpack.v2 v2.9.1
+gopkg.in/vmihailenco/msgpack.v2
+gopkg.in/vmihailenco/msgpack.v2/codes
