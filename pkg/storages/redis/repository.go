@@ -2,6 +2,7 @@ package redis
 
 import (
 	"tp-highload-performance-test/pkg/models"
+	"tp-highload-performance-test/pkg/storages"
 	"tp-highload-performance-test/pkg/utils"
 
 	"github.com/go-redis/redis"
@@ -16,16 +17,20 @@ const (
 )
 
 type Repository struct {
+	address string
+
 	client *redis.Client
 }
 
-func NewRepository() *Repository {
-	return &Repository{}
+func NewRepository(address string) storages.Repository {
+	return &Repository{
+		address: address,
+	}
 }
 
 func (r *Repository) OpenConnection() error {
 	r.client = redis.NewClient(&redis.Options{
-		Addr:     "127.0.0.1:6379",
+		Addr:     r.address,
 		Password: "",
 		DB:       0,
 	})

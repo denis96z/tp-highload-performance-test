@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"tp-highload-performance-test/pkg/models"
+	"tp-highload-performance-test/pkg/storages"
 
 	"github.com/google/uuid"
 	"github.com/syndtr/goleveldb/leveldb"
@@ -12,6 +13,8 @@ import (
 )
 
 type Repository struct {
+	address string
+
 	openReadOptions  opt.Options
 	openWriteOptions opt.Options
 
@@ -19,8 +22,9 @@ type Repository struct {
 	writeOptions opt.WriteOptions
 }
 
-func NewRepository() *Repository {
+func NewRepository(address string) storages.Repository {
 	return &Repository{
+		address: address,
 		openReadOptions: opt.Options{
 			Strict:   opt.NoStrict,
 			ReadOnly: true,
@@ -89,16 +93,12 @@ func (r *Repository) DeleteBlock(block *models.Block) error {
 	)
 }
 
-const (
-	DocumentsPath = "./documents"
-)
-
 func (r *Repository) openDB(
 	documentID models.UUID, options *opt.Options,
 ) (*leveldb.DB, error) {
 	id := uuid.UUID(documentID).String()
 	return leveldb.OpenFile(
-		fmt.Sprintf(DocumentsPath+"/%s", id), options,
+		fmt.Sprintf("%s/%s", r.address, id), options,
 	)
 }
 
