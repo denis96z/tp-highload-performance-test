@@ -6,6 +6,7 @@ import (
 
 	"tp-highload-performance-test/pkg/models"
 
+	"github.com/google/uuid"
 	"github.com/syndtr/goleveldb/leveldb"
 	"github.com/syndtr/goleveldb/leveldb/opt"
 )
@@ -95,8 +96,9 @@ const (
 func (r *Repository) openDB(
 	documentID models.UUID, options *opt.Options,
 ) (*leveldb.DB, error) {
+	id := uuid.UUID(documentID).String()
 	return leveldb.OpenFile(
-		fmt.Sprintf(DocumentsPath+"/%s", documentID), options,
+		fmt.Sprintf(DocumentsPath+"/%s", id), options,
 	)
 }
 
