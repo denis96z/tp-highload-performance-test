@@ -5,14 +5,18 @@ import (
 )
 
 // Setup -
-func Setup(NBlocks models.ID, DocumentID models.UUID) []*models.Block {
+func setup(nBlocks models.ID, documentID models.UUID, blockSize int) []*models.Block {
 	var blocks []*models.Block
+	data := make([]byte, blockSize)
+	for j := 0; j < blockSize; j++ {
+		data[j] = byte(j)
+	}
 	var i models.ID
-	for i = 0; i < NBlocks; i++ {
+	for i = 0; i < nBlocks; i++ {
 		blocks = append(blocks, &models.Block{
-			DocumentID: DocumentID,
-			BlockID:    NBlocks,
-			Data:       []byte{'1', '2', '3', '4'},
+			DocumentID: documentID,
+			BlockID:    i,
+			Data:       data,
 		})
 	}
 	return blocks
