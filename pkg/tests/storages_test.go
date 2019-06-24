@@ -11,7 +11,7 @@ import (
 
 const (
 	NBlocks      = 100
-	NConnections = 1
+	NConnections = 2
 	NBatch       = 256
 )
 
@@ -31,12 +31,7 @@ func BenchmarkConnectionsWrite(b *testing.B) {
 	}
 	defer repo.CloseConnection()
 
-	for i := 0; i < NBlocks; i++ {
-		err = repo.SaveBlock(blocks[i])
-		if err != nil {
-			panic("Failed to save block")
-		}
-	}
+	fillLevelDBWithBlocks(repo, blocks)
 }
 
 func BenchmarkGenerateBlocks(b *testing.B) {

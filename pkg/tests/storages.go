@@ -2,6 +2,7 @@ package tests
 
 import (
 	"tp-highload-performance-test/pkg/models"
+	"tp-highload-performance-test/pkg/storages/leveldb"
 )
 
 func generateBlocks(nBlocks models.ID, documentID models.UUID, blockSize int) []*models.Block {
@@ -19,4 +20,19 @@ func generateBlocks(nBlocks models.ID, documentID models.UUID, blockSize int) []
 		})
 	}
 	return blocks
+}
+
+func fillLevelDBWithBlocks(repo *leveldb.Repository, blocks []*models.Block) {
+	for i := 0; i < len(blocks); i++ {
+		err := repo.SaveBlock(blocks[i])
+		if err != nil {
+			panic(err)
+		}
+	}
+}
+
+func fillLevelDBNConnections(nConnections int, repo *leveldb.Repository, blocks []*models.Block) {
+	for i := 0; i < nConnections; i++ {
+		fillLevelDBWithBlocks(repo, blocks)
+	}
 }
