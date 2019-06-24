@@ -1,14 +1,12 @@
 package memcache
 
 import (
+	"fmt"
+
 	"tp-highload-performance-test/pkg/models"
-	"tp-highload-performance-test/pkg/utils"
+	"tp-highload-performance-test/pkg/storages"
 
 	"github.com/bradfitz/gomemcache/memcache"
-)
-
-const (
-	bufferLen = models.IDLen + models.UUIDLen
 )
 
 const (
@@ -16,15 +14,19 @@ const (
 )
 
 type Repository struct {
+	address string
+
 	client *memcache.Client
 }
 
-func NewRepository() *Repository {
-	return &Repository{}
+func NewRepository(address string) storages.Repository {
+	return &Repository{
+		address: address,
+	}
 }
 
 func (r *Repository) OpenConnection() error {
-	r.client = memcache.New("127.0.0.1:11211")
+	r.client = memcache.New(r.address)
 	return nil
 }
 
@@ -59,7 +61,9 @@ func (r *Repository) DeleteBlock(block *models.Block) error {
 }
 
 func makeKey(block *models.Block) string {
-	keyBuf := make([]byte, bufferLen)
-	utils.PrintKeyToBuffer(keyBuf, block.DocumentID, block.BlockID)
-	return utils.BytesToString(keyBuf)
+	return fmt.Sprintf(
+		"%s:%d",
+		block.DocumentID.String(),
+		block.BlockID.Int64(),
+	)
 }

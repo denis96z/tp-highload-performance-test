@@ -27,6 +27,6 @@ func PrintKeyToBuffer(buffer []byte, documentID models.UUID, blockID models.ID) 
 	C.print_to_buffer(
 		unsafe.Pointer(&buffer[0]),
 		unsafe.Pointer(&documentID),
-		C.long(blockID),
+		C.longlong(blockID),
 	)
 }
